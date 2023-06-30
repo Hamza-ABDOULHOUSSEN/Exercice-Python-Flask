@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="utf-8" />
+  <title>RPN Calculator</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename="css/style.css") }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename="css/style.css") }}"/>
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Calculator - Reverse Polish notation</h1>
+    {% if info %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      Numbers can be separated by space with '␣'
+    </div>
+    {% endif %}
+    <div class="container">
+      <form action="/">
+        <div class="first-row">
+          <input type="text" name="result" class="result" id="result" value="{{value}}" readonly/>
+        </div>
+        <div class="second-row">
+          <input type="button" value="7" onclick="writeInBar(7)"/>
+          <input type="button" value="8" onclick="writeInBar(8)"/>
+          <input type="button" value="9" onclick="writeInBar(9)" />
+          <input type="button" value="/" onclick="writeInBar('/')" />
+          <input type="button" value="C" onclick="clearBar()" class="clear"/>
+        </div>
+        <div class="third-row">
+          <input type="button" value="4" onclick="writeInBar(4)" />
+          <input type="button" value="5" onclick="writeInBar(5)" />
+          <input type="button" value="6" onclick="writeInBar(6)" />
+          <input type="button" value="x" onclick="writeInBar('*')" />
+          <input type="button" value="<" onclick="undo()" class="clear"/>
+        </div>
+        <div class="first-col">
+          <div class="fourth-row">
+            <input type="button" value="1" onclick="writeInBar(1)" />
+            <input type="button" value="2" onclick="writeInBar(2)" />
+            <input type="button" value="3" onclick="writeInBar(3)" />
+            <input type="button" value="-" onclick="writeInBar('-')" />
+          </div>
+          <div class="fifth-row">
+            <input type="button" value="." onclick="writeInBar('.')" />
+            <input type="button" value="0" onclick="writeInBar(0)" />
+            <input type="button" value="␣" onclick="writeInBar(' ')" />
+            <input type="button" value="+" onclick="writeInBar('+')" />
+          </div>
+        </div>
+        <div class="second-col">
+          <input type="submit" value="=" class="validation_button"/>
+        </div>
+
+
+      </form>
+    </div>
+
+    <h3 id="error_message">{{ error_message }}</h3>
+
+    <input class="download-button" type="button" value="Download all operation - csv format" onclick="window.location.href='/downloadCSV'" />
+  </div>
+  <!-- Fontawesome Script -->
+  <script src="https://kit.fontawesome.com/f28b055962.js" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+</body>
+
+</html>
